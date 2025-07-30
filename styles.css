@@ -1,4 +1,35 @@
-/* Custom styles */
+form {
+  max-width: 200px;
+  margin: 0 auto;
+  padding: 0 5px; /* Add horizontal padding */
+  display: flex;
+  justify-content: center;
+}
+input[type="email"] {
+  flex: 1;
+  padding: 12px 9px;
+  border-radius: 8px 0 0 8px;
+  border: 1px solid #c5a04b; /* gold */
+  background: transparent;
+  color: #f8f5f2; /* pearl */
+  box-sizing: border-box;
+}
+button {
+  padding: 12px 24px;
+  border-radius: 0 8px 8px 0;
+  background-color: #c5a04b; /* gold */
+  color: #1e1e1e; /* charcoal */
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+button:hover {
+  background-color: #f8f5f2; /* pearl */
+  color: #1e1e1e; /* charcoal */
+}
+/* end comming soon */
+
 .text-stroke {
   -webkit-text-stroke: 1px #c5a04b;
   text-stroke: 1px #c5a04b;
@@ -30,7 +61,6 @@
   transition: width 0.3s ease;
   margin-top: 2px;
 }
-
 .nav-link:hover::after {
   width: 100%;
 }
@@ -40,7 +70,6 @@
   visibility: visible;
   transform: translateY(0);
 }
-
 .dropdown-menu {
   transition: all 0.3s ease;
   opacity: 0;
@@ -48,46 +77,31 @@
   transform: translateY(10px);
 }
 
-/* Mobile menu animation */
-.mobile-menu-enter {
-  opacity: 0;
-  transform: translateY(-20px);
+#mobile-menu {
+  /* Already fixed, covers screen, initially hidden above */
+  transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+#mobile-menu.open {
+  transform: translateY(0) !important;
+}
+body.menu-open {
+  overflow: hidden; /* Prevent scroll behind mobile menu */
 }
 
-.mobile-menu-enter-active {
-  opacity: 1;
-  transform: translateY(0);
-  transition: all 0.3s ease;
-}
-
-.mobile-menu-exit {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.mobile-menu-exit-active {
-  opacity: 0;
-  transform: translateY(-20px);
-  transition: all 0.3s ease;
-}
-
-/* Cart item animation */
+/* Cart & menu overlays/animations */
 .cart-item-enter {
   opacity: 0;
   transform: translateX(100px);
 }
-
 .cart-item-enter-active {
   opacity: 1;
   transform: translateX(0);
   transition: all 300ms ease-in;
 }
-
 .cart-item-exit {
   opacity: 1;
   transform: translateX(0);
 }
-
 .cart-item-exit-active {
   opacity: 0;
   transform: translateX(100px);
@@ -109,4 +123,103 @@
   .testimonial-card {
     padding: 1.5rem;
   }
+  #mobile-menu {
+    width: 100vw;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+/* Hide mobile menu on desktop */
+@media (min-width: 1024px) {
+  #mobile-menu {
+    display: none !important;
+  }
+}
+
+/* ===========================
+   MOBILE-SPECIFIC ADJUSTMENTS
+   =========================== */
+@media (max-width: 1023.9px) {
+  /* Make "Add to Cart" button always visible on mobile */
+
+  /* Target the overlay with this class - add this class to your overlay divs */
+  .add-to-cart-overlay {
+    position: static !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    background: none !important;
+    padding: 0 !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    min-height: 0 !important;
+    box-shadow: none !important;
+    transition: none !important;
+  }
+  .add-to-cart-overlay button {
+    width: 100%;
+    margin-top: 0.75rem;
+    border-radius: 0.5rem;
+  }
+
+  /* Disable hover scale effect on product images for touch devices */
+  .group:hover .group-hover\:scale-105 {
+    transform: none;
+  }
+
+  /* Mobile menu padding for smaller widths - already set but can reinforce */
+  #mobile-menu {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    min-height: 70vh;
+  }
+  .hero-title {
+    font-size: 2.5rem;
+    line-height: 1.2;
+  }
+  .jewel-card {
+    height: 300px;
+  }
+  .testimonial-card {
+    padding: 1.5rem;
+  }
+}
+
+/* ===========================
+   DESKTOP-SPECIFIC ADJUSTMENTS
+   =========================== */
+@media (min-width: 1024px) {
+  #mobile-menu {
+    display: none !important;
+  }
+}
+
+/* ===========================
+   ADDITIONAL MINOR FIXES & UX
+   =========================== */
+
+/* Make sure mobile menu close button stands out */
+#close-mobile-menu {
+  cursor: pointer;
+}
+
+/* Jewelry toggle button cursor */
+#mobile-jewelry-toggle {
+  cursor: pointer;
+}
+
+/* Smooth icon rotation for jewelry dropdown arrow */
+#jewelry-mobile-arrow {
+  transition: transform 0.3s ease;
+}
+
+/* Rotate arrow when open */
+#jewelry-mobile-arrow.fa-chevron-up {
+  transform: rotate(180deg);
 }
