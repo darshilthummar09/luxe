@@ -107,33 +107,28 @@ function updateCart() {
       (item) => `
                 <div class="cart-item flex items-center py-4 border-b border-champagne">
                     <div class="flex-shrink-0 w-20 h-20 bg-champagne rounded-md overflow-hidden">
-                        <img src="${item.image}" alt="${
-        item.name
-      }" class="w-full h-full object-cover">
+                        <img src="${item.image}" alt="${item.name
+        }" class="w-full h-full object-cover">
                     </div>
                     <div class="ml-4 flex-1">
-                        <h4 class="text-sm font-sans font-medium">${
-                          item.name
-                        }</h4>
+                        <h4 class="text-sm font-sans font-medium">${item.name
+        }</h4>
                         <p class="text-sm text-charcoal/50">$${item.price.toFixed(
-                          2
-                        )}</p>
+          2
+        )}</p>
                     </div>
                     <div class="flex items-center">
-                        <button class="decrease-quantity text-charcoal/50 hover:text-gold px-2 py-1 transition duration-300" data-id="${
-                          item.id
-                        }">
+                        <button class="decrease-quantity text-charcoal/50 hover:text-gold px-2 py-1 transition duration-300" data-id="${item.id
+        }">
                             <i class="fas fa-minus text-xs"></i>
                         </button>
                         <span class="mx-2 text-sm">${item.quantity}</span>
-                        <button class="increase-quantity text-charcoal/50 hover:text-gold px-2 py-1 transition duration-300" data-id="${
-                          item.id
-                        }">
+                        <button class="increase-quantity text-charcoal/50 hover:text-gold px-2 py-1 transition duration-300" data-id="${item.id
+        }">
                             <i class="fas fa-plus text-xs"></i>
                         </button>
-                        <button class="remove-item ml-4 text-charcoal/50 hover:text-red-500 transition duration-300" data-id="${
-                          item.id
-                        }">
+                        <button class="remove-item ml-4 text-charcoal/50 hover:text-red-500 transition duration-300" data-id="${item.id
+        }">
                             <i class="fas fa-times"></i>
                         </button>
                     </div>
