@@ -1,481 +1,943 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
     <title>LUXE | Timeless Luxury Jewelry</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="./styles.css"/>
+    <link rel="stylesheet" href="./styles.css" />
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['"Cormorant Garamond"', 'serif'],
-                        body: ['"Montserrat"', 'sans-serif'],
-                    },
-                    colors: {
-                        champagne: '#F3E5D8',
-                        gold: '#C5A04B',
-                        charcoal: '#1E1E1E',
-                        pearl: '#F8F5F2',
-                    },
-                    animation: {
-                        'fade-in': 'fadeIn 0.5s ease-in-out',
-                        'float': 'float 6s ease-in-out infinite',
-                    },
-                    keyframes: {
-                        fadeIn: {
-                            '0%': { opacity: '0' },
-                            '100%': { opacity: '1' },
-                        },
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0)' },
-                            '50%': { transform: 'translateY(-10px)' },
-                        }
-                    }
-                }
-            }
-        }
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['"Cormorant Garamond"', "serif"],
+              body: ['"Montserrat"', "sans-serif"],
+            },
+            colors: {
+              champagne: "#F3E5D8",
+              gold: "#C5A04B",
+              charcoal: "#1E1E1E",
+              pearl: "#F8F5F2",
+            },
+            animation: {
+              "fade-in": "fadeIn 0.5s ease-in-out",
+              float: "float 6s ease-in-out infinite",
+            },
+            keyframes: {
+              fadeIn: {
+                "0%": { opacity: "0" },
+                "100%": { opacity: "1" },
+              },
+              float: {
+                "0%, 100%": { transform: "translateY(0)" },
+                "50%": { transform: "translateY(-10px)" },
+              },
+            },
+          },
+        },
+      };
     </script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-</head>
-<body class="bg-pearl text-charcoal font-body">
-    <!-- Navigation -->
-    <nav class="bg-white/80 backdrop-blur-md fixed w-full z-50 border-b border-champagne">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex justify-between h-24 items-center">
-                <!-- Logo -->
-                <div class="flex-shrink-0 flex items-center">
-                    <a href="#" class="text-3xl font-bold font-sans text-charcoal tracking-wider">LUXE</a>
-                </div>
-                
-                <!-- Desktop Menu -->
-                <div class="hidden lg:flex items-center space-x-8">
-                    <div class="dropdown relative">
-                        <button class="nav-link text-charcoal hover:text-gold px-3 py-2 text-lg font-medium font-sans flex items-center transition duration-300">
-                            Jewelry <i class="fas fa-chevron-down ml-2 text-xs mt-1"></i>
-                        </button>
-                        <div class="dropdown-menu absolute mt-2 w-56 bg-white rounded-md shadow-xl py-2 z-50 border border-champagne">
-                            <a href="#" class="block px-4 py-3 text-charcoal hover:bg-champagne transition duration-200 font-sans">Rings</a>
-                            <a href="#" class="block px-4 py-3 text-charcoal hover:bg-champagne transition duration-200 font-sans">Necklaces</a>
-                            <a href="#" class="block px-4 py-3 text-charcoal hover:bg-champagne transition duration-200 font-sans">Earrings</a>
-                            <a href="#" class="block px-4 py-3 text-charcoal hover:bg-champagne transition duration-200 font-sans">Bracelets</a>
-                        </div>
-                    </div>
-                    <a href="#" class="nav-link text-charcoal hover:text-gold px-3 py-2 text-lg font-medium font-sans transition duration-300">Collections</a>
-                    <a href="#" class="nav-link text-charcoal hover:text-gold px-3 py-2 text-lg font-medium font-sans transition duration-300">About</a>
-                    <a href="#" class="nav-link text-charcoal hover:text-gold px-3 py-2 text-lg font-medium font-sans transition duration-300">Contact</a>
-                    
-                    <!-- Icons -->
-                    <div class="flex items-center space-x-6 ml-4">
-                        <button id="search-btn" class="text-charcoal hover:text-gold transition duration-300">
-                            <i class="fas fa-search text-xl"></i>
-                        </button>
-                        <button id="wishlist-btn" class="text-charcoal hover:text-gold transition duration-300 relative">
-                            <i class="fas fa-heart text-xl"></i>
-                            <span class="absolute -top-2 -right-2 bg-gold text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-sans">0</span>
-                        </button>
-                        <button id="cart-btn" class="text-charcoal hover:text-gold transition duration-300 relative">
-                            <i class="fas fa-shopping-bag text-xl"></i>
-                            <span id="cart-count" class="absolute -top-2 -right-2 bg-charcoal text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-sans">0</span>
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Mobile menu button -->
-                <div class="lg:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="text-charcoal hover:text-gold transition duration-300">
-                        <i class="fas fa-bars text-2xl"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden lg:hidden bg-white fixed w-full mt-24 z-40 border-t border-champagne shadow-lg">
-            <div class="px-6 pt-4 pb-6 space-y-2">
-                <a href="#" class="block px-4 py-3 text-lg font-medium text-charcoal hover:bg-champagne rounded transition duration-200">Jewelry</a>
-                <a href="#" class="block px-4 py-3 text-lg font-medium text-charcoal hover:bg-champagne rounded transition duration-200">Collections</a>
-                <a href="#" class="block px-4 py-3 text-lg font-medium text-charcoal hover:bg-champagne rounded transition duration-200">About</a>
-                <a href="#" class="block px-4 py-3 text-lg font-medium text-charcoal hover:bg-champagne rounded transition duration-200">Contact</a>
-            </div>
-            <div class="pt-4 pb-6 border-t border-champagne px-6">
-                <div class="flex items-center justify-center space-x-8">
-                    <button class="text-charcoal hover:text-gold transition duration-300">
-                        <i class="fas fa-search text-xl"></i>
-                    </button>
-                    <button class="text-charcoal hover:text-gold transition duration-300 relative">
-                        <i class="fas fa-heart text-xl"></i>
-                        <span class="absolute -top-2 -right-2 bg-gold text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
-                    </button>
-                    <button class="text-charcoal hover:text-gold transition duration-300 relative">
-                        <i class="fas fa-shopping-bag text-xl"></i>
-                        <span class="absolute -top-2 -right-2 bg-charcoal text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Search Bar -->
-        <div id="search-bar" class="hidden bg-white py-4 px-6 border-t border-champagne">
-            <div class="max-w-7xl mx-auto flex items-center">
-                <input type="text" placeholder="Search for exquisite pieces..." class="flex-1 border-b border-charcoal/30 py-2 px-3 focus:outline-none focus:border-gold bg-transparent font-sans placeholder-charcoal/50">
-                <button class="ml-4 text-charcoal hover:text-gold transition duration-300">
-                    <i class="fas fa-search text-xl"></i>
-                </button>
-            </div>
-        </div>
-    </nav>
-    
-    <!-- Cart Sidebar -->
-    <div id="cart-sidebar" class="fixed top-0 right-0 h-full w-full lg:w-96 bg-white shadow-xl transform translate-x-full transition-transform duration-300 ease-in-out z-50 overflow-y-auto border-l border-champagne">
-        <div class="p-8">
-            <div class="flex justify-between items-center border-b border-champagne pb-6">
-                <h3 class="text-2xl font-sans font-medium">Your Cart</h3>
-                <button id="close-cart" class="text-charcoal hover:text-gold transition duration-300">
-                    <i class="fas fa-times text-xl"></i>
-                </button>
-            </div>
-            
-            <div id="cart-items" class="py-6 space-y-6">
-                <!-- Cart items will be added here dynamically -->
-                <div class="text-center py-12 text-charcoal/50">
-                    <i class="fas fa-shopping-bag text-4xl mb-4 animate-float"></i>
-                    <p class="text-lg">Your cart is empty</p>
-                </div>
-            </div>
-            
-            <div class="border-t border-champagne pt-6">
-                <div class="flex justify-between mb-3">
-                    <span class="text-charcoal/80">Subtotal</span>
-                    <span id="cart-subtotal" class="font-sans font-medium">$0.00</span>
-                </div>
-                <div class="flex justify-between mb-6">
-                    <span class="text-charcoal/80">Shipping</span>
-                    <span class="font-sans">Calculated at checkout</span>
-                </div>
-                <button class="w-full bg-charcoal text-pearl py-4 px-6 hover:bg-gold transition duration-300 font-sans tracking-wider">PROCEED TO CHECKOUT</button>
-                <p class="text-center text-sm text-charcoal/60 mt-4 font-sans">or <a href="#" class="text-gold hover:underline">continue shopping</a></p>
-            </div>
-        </div>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-pearl text-charcoal font-body">
+    <!-- Coming Soon Overlay -->
+    <div
+      id="coming-soon-overlay"
+      class="fixed inset-0 bg-charcoal flex flex-col items-center justify-center z-[9999] p-6 text-center"
+    >
+      <h1 class="text-gold font-serif text-7xl font-bold mb-6 select-none">
+        Coming Soon
+      </h1>
+      <p class="text-pearl text-xl max-w-md mb-8">
+        We're crafting something exquisite for you. Stay tuned for our grand
+        launch!
+      </p>
+      <form class="flex justify-center max-w-md mb-8">
+        <input
+          type="email"
+          placeholder="Enter your email"
+          class="flex-1 px-4 py-3 rounded-l-md border border-gold bg-transparent text-pearl placeholder-pearl focus:outline-none focus:ring-2 focus:ring-gold w-40"
+        />
+        <button
+          type="submit"
+          class="flex-shrink-0 bg-gold text-charcoal px-2 py-2 rounded-r-md font-medium hover:bg-pearl hover:text-charcoal transition"
+        >
+          Notify Me
+        </button>
+      </form>
+
+      <div class="flex justify-center space-x-8 mt-10 text-gold text-3xl">
+        <a href="#" aria-label="Facebook" class="hover:text-pearl"
+          ><i class="fab fa-facebook-f"></i
+        ></a>
+        <a href="#" aria-label="Instagram" class="hover:text-pearl"
+          ><i class="fab fa-instagram"></i
+        ></a>
+        <a href="#" aria-label="Twitter" class="hover:text-pearl"
+          ><i class="fab fa-twitter"></i
+        ></a>
+      </div>
     </div>
-    
+
+    <!-- Navigation -->
+    <nav
+      class="bg-white/80 backdrop-blur-md fixed w-full z-50 border-b border-champagne"
+    >
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="flex justify-between h-24 items-center">
+          <!-- Logo -->
+          <div class="flex-shrink-0 flex items-center">
+            <a
+              href="#"
+              class="text-3xl font-bold font-sans text-charcoal tracking-wider"
+              >LUXE</a
+            >
+          </div>
+
+          <!-- Desktop Menu -->
+          <div class="hidden lg:flex items-center space-x-8">
+            <div class="dropdown relative">
+              <button
+                class="nav-link text-charcoal hover:text-gold px-3 py-2 text-lg font-medium font-sans flex items-center transition duration-300"
+              >
+                Jewelry <i class="fas fa-chevron-down ml-2 text-xs mt-1"></i>
+              </button>
+              <div
+                class="dropdown-menu absolute mt-2 w-56 bg-white rounded-md shadow-xl py-2 z-50 border border-champagne"
+              >
+                <a
+                  href="#"
+                  class="block px-4 py-3 text-charcoal hover:bg-champagne transition duration-200 font-sans"
+                  >Rings</a
+                >
+                <a
+                  href="#"
+                  class="block px-4 py-3 text-charcoal hover:bg-champagne transition duration-200 font-sans"
+                  >Necklaces</a
+                >
+                <a
+                  href="#"
+                  class="block px-4 py-3 text-charcoal hover:bg-champagne transition duration-200 font-sans"
+                  >Earrings</a
+                >
+                <a
+                  href="#"
+                  class="block px-4 py-3 text-charcoal hover:bg-champagne transition duration-200 font-sans"
+                  >Bracelets</a
+                >
+              </div>
+            </div>
+            <a
+              href="#"
+              class="nav-link text-charcoal hover:text-gold px-3 py-2 text-lg font-medium font-sans transition duration-300"
+              >Collections</a
+            >
+            <a
+              href="#"
+              class="nav-link text-charcoal hover:text-gold px-3 py-2 text-lg font-medium font-sans transition duration-300"
+              >About</a
+            >
+            <a
+              href="#"
+              class="nav-link text-charcoal hover:text-gold px-3 py-2 text-lg font-medium font-sans transition duration-300"
+              >Contact</a
+            >
+
+            <!-- Icons -->
+            <div class="flex items-center space-x-6 ml-4">
+              <button
+                id="search-btn"
+                class="text-charcoal hover:text-gold transition duration-300"
+              >
+                <i class="fas fa-search text-xl"></i>
+              </button>
+              <button
+                id="wishlist-btn"
+                class="text-charcoal hover:text-gold transition duration-300 relative"
+              >
+                <i class="fas fa-heart text-xl"></i>
+                <span
+                  class="absolute -top-2 -right-2 bg-gold text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-sans"
+                  >0</span
+                >
+              </button>
+              <button
+                id="cart-btn"
+                class="text-charcoal hover:text-gold transition duration-300 relative"
+              >
+                <i class="fas fa-shopping-bag text-xl"></i>
+                <span
+                  id="cart-count"
+                  class="absolute -top-2 -right-2 bg-charcoal text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-sans"
+                  >0</span
+                >
+              </button>
+            </div>
+          </div>
+
+          <!-- Mobile menu button -->
+          <div class="lg:hidden flex items-center">
+            <button
+              id="mobile-menu-btn"
+              class="text-charcoal hover:text-gold transition duration-300"
+            >
+              <i class="fas fa-bars text-2xl"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div
+        id="mobile-menu"
+        class="hidden lg:hidden bg-white fixed w-full z-40 border-t border-champagne shadow-lg"
+      >
+        <div class="px-6 pt-4 pb-6 space-y-2">
+          <a
+            href="#"
+            class="block px-4 py-3 text-lg font-medium text-charcoal hover:bg-champagne rounded transition duration-200"
+            >Jewelry</a
+          >
+          <a
+            href="#"
+            class="block px-4 py-3 text-lg font-medium text-charcoal hover:bg-champagne rounded transition duration-200"
+            >Collections</a
+          >
+          <a
+            href="#"
+            class="block px-4 py-3 text-lg font-medium text-charcoal hover:bg-champagne rounded transition duration-200"
+            >About</a
+          >
+          <a
+            href="#"
+            class="block px-4 py-3 text-lg font-medium text-charcoal hover:bg-champagne rounded transition duration-200"
+            >Contact</a
+          >
+        </div>
+        <div class="pt-4 pb-6 border-t border-champagne px-6">
+          <div class="flex items-center justify-center space-x-8">
+            <button
+              class="text-charcoal hover:text-gold transition duration-300"
+            >
+              <i class="fas fa-search text-xl"></i>
+            </button>
+            <button
+              class="text-charcoal hover:text-gold transition duration-300 relative"
+            >
+              <i class="fas fa-heart text-xl"></i>
+              <span
+                class="absolute -top-2 -right-2 bg-gold text-white text-xs rounded-full h-5 w-5 flex items-center justify-center"
+                >0</span
+              >
+            </button>
+            <button
+              class="text-charcoal hover:text-gold transition duration-300 relative"
+            >
+              <i class="fas fa-shopping-bag text-xl"></i>
+              <span
+                class="absolute -top-2 -right-2 bg-charcoal text-white text-xs rounded-full h-5 w-5 flex items-center justify-center"
+                >0</span
+              >
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Search Bar -->
+      <div
+        id="search-bar"
+        class="hidden bg-white py-4 px-6 border-t border-champagne"
+      >
+        <div class="max-w-7xl mx-auto flex items-center">
+          <input
+            type="text"
+            placeholder="Search for exquisite pieces..."
+            class="flex-1 border-b border-charcoal/30 py-2 px-3 focus:outline-none focus:border-gold bg-transparent font-sans placeholder-charcoal/50"
+          />
+          <button
+            class="ml-4 text-charcoal hover:text-gold transition duration-300"
+          >
+            <i class="fas fa-search text-xl"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Cart Sidebar -->
+    <div
+      id="cart-sidebar"
+      class="fixed top-0 right-0 h-full w-full lg:w-96 bg-white shadow-xl transform translate-x-full transition-transform duration-300 ease-in-out z-50 overflow-y-auto border-l border-champagne"
+    >
+      <div class="p-8">
+        <div
+          class="flex justify-between items-center border-b border-champagne pb-6"
+        >
+          <h3 class="text-2xl font-sans font-medium">Your Cart</h3>
+          <button
+            id="close-cart"
+            class="text-charcoal hover:text-gold transition duration-300"
+          >
+            <i class="fas fa-times text-xl"></i>
+          </button>
+        </div>
+
+        <div id="cart-items" class="py-6 space-y-6">
+          <!-- Cart items will be added here dynamically -->
+          <div class="text-center py-12 text-charcoal/50">
+            <i class="fas fa-shopping-bag text-4xl mb-4 animate-float"></i>
+            <p class="text-lg">Your cart is empty</p>
+          </div>
+        </div>
+
+        <div class="border-t border-champagne pt-6">
+          <div class="flex justify-between mb-3">
+            <span class="text-charcoal/80">Subtotal</span>
+            <span id="cart-subtotal" class="font-sans font-medium">$0.00</span>
+          </div>
+          <div class="flex justify-between mb-6">
+            <span class="text-charcoal/80">Shipping</span>
+            <span class="font-sans">Calculated at checkout</span>
+          </div>
+          <button
+            class="w-full bg-charcoal text-pearl py-4 px-6 hover:bg-gold transition duration-300 font-sans tracking-wider"
+          >
+            PROCEED TO CHECKOUT
+          </button>
+          <p class="text-center text-sm text-charcoal/60 mt-4 font-sans">
+            or
+            <a href="#" class="text-gold hover:underline">continue shopping</a>
+          </p>
+        </div>
+      </div>
+    </div>
+
     <!-- Overlay -->
     <div id="overlay" class="fixed inset-0 bg-charcoal/50 z-40 hidden"></div>
-    
+
     <!-- Hero Section -->
-    <section class="hero flex items-center justify-center text-center text-pearl pt-24 px-6 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1602173574767-37ac01994b2a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80'); min-height: 90vh;">
-        <div class="hero-gradient absolute inset-0"></div>
-        <div class="max-w-4xl relative z-10 animate-fade-in">
-            <h1 class="hero-title font-sans text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">Timeless Elegance,<br>Crafted to Perfection</h1>
-            <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">Discover our exquisite collection of handcrafted jewelry, where luxury meets artistry.</p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4">
-                <a href="#" class="inline-block bg-gold text-charcoal px-10 py-4 font-sans font-medium hover:bg-pearl hover:text-charcoal transition duration-300">SHOP NOW</a>
-                <a href="#" class="inline-block border border-pearl text-pearl px-10 py-4 font-sans font-medium hover:bg-pearl/10 transition duration-300">EXPLORE</a>
-            </div>
+    <section
+      class="hero flex items-center justify-center text-center text-pearl pt-24 px-6 bg-cover bg-center"
+      style="
+        background-image: url('https://images.unsplash.com/photo-1602173574767-37ac01994b2a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+        min-height: 90vh;
+      "
+    >
+      <div class="hero-gradient absolute inset-0"></div>
+      <div class="max-w-4xl relative z-10 animate-fade-in">
+        <h1
+          class="hero-title font-sans text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight"
+        >
+          Timeless Elegance,<br />Crafted to Perfection
+        </h1>
+        <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">
+          Discover our exquisite collection of handcrafted jewelry, where luxury
+          meets artistry.
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center gap-4">
+          <a
+            href="#"
+            class="inline-block bg-gold text-charcoal px-10 py-4 font-sans font-medium hover:bg-pearl hover:text-charcoal transition duration-300"
+            >SHOP NOW</a
+          >
+          <a
+            href="#"
+            class="inline-block border border-pearl text-pearl px-10 py-4 font-sans font-medium hover:bg-pearl/10 transition duration-300"
+            >EXPLORE</a
+          >
         </div>
+      </div>
     </section>
-    
+
     <!-- Signature Collection -->
     <section class="py-20 px-6 max-w-7xl mx-auto">
-        <div class="text-center mb-16">
-            <span class="text-gold font-sans tracking-widest text-sm mb-4 inline-block">SIGNATURE COLLECTION</span>
-            <h2 class="font-sans text-4xl md:text-5xl font-bold mb-4">Masterpieces of Craftsmanship</h2>
-            <p class="max-w-2xl mx-auto text-charcoal/70">Each piece tells a story of unparalleled artistry and timeless beauty</p>
+      <div class="text-center mb-16">
+        <span
+          class="text-gold font-sans tracking-widest text-sm mb-4 inline-block"
+          >SIGNATURE COLLECTION</span
+        >
+        <h2 class="font-sans text-4xl md:text-5xl font-bold mb-4">
+          Masterpieces of Craftsmanship
+        </h2>
+        <p class="max-w-2xl mx-auto text-charcoal/70">
+          Each piece tells a story of unparalleled artistry and timeless beauty
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div class="relative group overflow-hidden rounded-lg">
+          <img
+            src="https://images.unsplash.com/photo-1693213085235-ea6deadf8cee?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="Diamond Collection"
+            class="w-full h-[500px] object-cover transition duration-700 group-hover:scale-110"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-charcoal/70 via-charcoal/30 to-transparent flex items-end p-8"
+          >
+            <div class="text-pearl">
+              <h3 class="font-sans text-3xl font-bold mb-2">
+                Diamond Collection
+              </h3>
+              <p class="mb-6">Radiant brilliance that captivates</p>
+              <a
+                href="#"
+                class="inline-flex items-center text-pearl hover:text-gold transition duration-300 group"
+              >
+                <span class="mr-2">Discover</span>
+                <i
+                  class="fas fa-arrow-right group-hover:translate-x-1 transition duration-300"
+                ></i>
+              </a>
+            </div>
+          </div>
         </div>
-        
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <div class="relative group overflow-hidden rounded-lg">
-                <img src="https://images.unsplash.com/photo-1693213085235-ea6deadf8cee?q=80&w=764&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Diamond Collection" class="w-full h-[500px] object-cover transition duration-700 group-hover:scale-110">
-                <div class="absolute inset-0 bg-gradient-to-t from-charcoal/70 via-charcoal/30 to-transparent flex items-end p-8">
-                    <div class="text-pearl">
-                        <h3 class="font-sans text-3xl font-bold mb-2">Diamond Collection</h3>
-                        <p class="mb-6">Radiant brilliance that captivates</p>
-                        <a href="#" class="inline-flex items-center text-pearl hover:text-gold transition duration-300 group">
-                            <span class="mr-2">Discover</span>
-                            <i class="fas fa-arrow-right group-hover:translate-x-1 transition duration-300"></i>
-                        </a>
-                    </div>
-                </div>
+
+        <div class="relative group overflow-hidden rounded-lg">
+          <img
+            src="https://images.unsplash.com/photo-1672646858147-2f9ddb140191?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="Gold Collection"
+            class="w-full h-[500px] object-cover transition duration-700 group-hover:scale-110"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-charcoal/70 via-charcoal/30 to-transparent flex items-end p-8"
+          >
+            <div class="text-pearl">
+              <h3 class="font-sans text-3xl font-bold mb-2">Gold Collection</h3>
+              <p class="mb-6">Timeless luxury in every detail</p>
+              <a
+                href="#"
+                class="inline-flex items-center text-pearl hover:text-gold transition duration-300 group"
+              >
+                <span class="mr-2">Discover</span>
+                <i
+                  class="fas fa-arrow-right group-hover:translate-x-1 transition duration-300"
+                ></i>
+              </a>
             </div>
-            
-            <div class="relative group overflow-hidden rounded-lg">
-                <img src="https://images.unsplash.com/photo-1672646858147-2f9ddb140191?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Gold Collection" class="w-full h-[500px] object-cover transition duration-700 group-hover:scale-110">
-                <div class="absolute inset-0 bg-gradient-to-t from-charcoal/70 via-charcoal/30 to-transparent flex items-end p-8">
-                    <div class="text-pearl">
-                        <h3 class="font-sans text-3xl font-bold mb-2">Gold Collection</h3>
-                        <p class="mb-6">Timeless luxury in every detail</p>
-                        <a href="#" class="inline-flex items-center text-pearl hover:text-gold transition duration-300 group">
-                            <span class="mr-2">Discover</span>
-                            <i class="fas fa-arrow-right group-hover:translate-x-1 transition duration-300"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="relative group overflow-hidden rounded-lg">
-                <img src="https://plus.unsplash.com/premium_photo-1681276170538-092ed3578648?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Pearl Collection" class="w-full h-[500px] object-cover transition duration-700 group-hover:scale-110">
-                <div class="absolute inset-0 bg-gradient-to-t from-charcoal/70 via-charcoal/30 to-transparent flex items-end p-8">
-                    <div class="text-pearl">
-                        <h3 class="font-sans text-3xl font-bold mb-2">Pearl Collection</h3>
-                        <p class="mb-6">Classic beauty from the sea</p>
-                        <a href="#" class="inline-flex items-center text-pearl hover:text-gold transition duration-300 group">
-                            <span class="mr-2">Discover</span>
-                            <i class="fas fa-arrow-right group-hover:translate-x-1 transition duration-300"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+
+        <div class="relative group overflow-hidden rounded-lg">
+          <img
+            src="https://plus.unsplash.com/premium_photo-1681276170538-092ed3578648?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="Pearl Collection"
+            class="w-full h-[500px] object-cover transition duration-700 group-hover:scale-110"
+          />
+          <div
+            class="absolute inset-0 bg-gradient-to-t from-charcoal/70 via-charcoal/30 to-transparent flex items-end p-8"
+          >
+            <div class="text-pearl">
+              <h3 class="font-sans text-3xl font-bold mb-2">
+                Pearl Collection
+              </h3>
+              <p class="mb-6">Classic beauty from the sea</p>
+              <a
+                href="#"
+                class="inline-flex items-center text-pearl hover:text-gold transition duration-300 group"
+              >
+                <span class="mr-2">Discover</span>
+                <i
+                  class="fas fa-arrow-right group-hover:translate-x-1 transition duration-300"
+                ></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
-    
+
     <!-- Best Sellers -->
     <section class="py-20 px-6 max-w-7xl mx-auto bg-white">
-        <div class="text-center mb-16">
-            <span class="text-gold font-sans tracking-widest text-sm mb-4 inline-block">CURATED SELECTION</span>
-            <h2 class="font-sans text-4xl md:text-5xl font-bold mb-4">Our Best Sellers</h2>
-            <p class="max-w-2xl mx-auto text-charcoal/70">Exquisite pieces loved by our discerning clientele</p>
+      <div class="text-center mb-16">
+        <span
+          class="text-gold font-sans tracking-widest text-sm mb-4 inline-block"
+          >CURATED SELECTION</span
+        >
+        <h2 class="font-sans text-4xl md:text-5xl font-bold mb-4">
+          Our Best Sellers
+        </h2>
+        <p class="max-w-2xl mx-auto text-charcoal/70">
+          Exquisite pieces loved by our discerning clientele
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Product 1 -->
+        <div
+          class="jewel-hover bg-white group relative rounded-lg overflow-hidden border border-champagne"
+        >
+          <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+              alt="Diamond Solitaire Ring"
+              class="h-[350px] w-full object-cover object-center transition duration-500 group-hover:scale-105"
+            />
+          </div>
+          <div class="p-6">
+            <h3 class="font-sans text-xl font-medium text-charcoal mb-1">
+              Diamond Solitaire Ring
+            </h3>
+            <p class="text-sm text-charcoal/60 mb-3">18K White Gold</p>
+            <p class="font-sans text-lg font-medium text-gold">$2,499.00</p>
+            <div
+              class="add-to-cart-overlay absolute inset-0 bg-gradient-to-t from-charcoal/70 via-transparent to-transparent flex items-end p-6 opacity-0 group-hover:opacity-100 transition duration-300"
+            >
+              <button
+                class="add-to-cart w-full bg-gold text-charcoal py-3 px-6 font-sans font-medium hover:bg-pearl transition duration-300"
+                data-id="1"
+                data-name="Diamond Solitaire Ring"
+                data-price="2499"
+                data-image="https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+              >
+                ADD TO CART
+              </button>
+            </div>
+          </div>
         </div>
-        
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <!-- Product 1 -->
-            <div class="jewel-hover bg-white group relative rounded-lg overflow-hidden border border-champagne">
-                <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Diamond Solitaire Ring" class="h-[350px] w-full object-cover object-center transition duration-500 group-hover:scale-105">
-                    <div class="absolute inset-0 bg-gradient-to-t from-charcoal/70 via-transparent to-transparent flex items-end p-6 opacity-0 group-hover:opacity-100 transition duration-300">
-                        <button class="add-to-cart w-full bg-gold text-charcoal py-3 px-6 font-sans font-medium hover:bg-pearl transition duration-300" data-id="1" data-name="Diamond Solitaire Ring" data-price="2499" data-image="https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80">
-                            ADD TO CART
-                        </button>
-                    </div>
-                </div>
-                <div class="p-6">
-                    <h3 class="font-sans text-xl font-medium text-charcoal mb-1">Diamond Solitaire Ring</h3>
-                    <p class="text-sm text-charcoal/60 mb-3">18K White Gold</p>
-                    <p class="font-sans text-lg font-medium text-gold">$2,499.00</p>
-                </div>
+
+        <!-- Product 2 -->
+        <div
+          class="jewel-hover bg-white group relative rounded-lg overflow-hidden border border-champagne"
+        >
+          <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden">
+            <img
+              src="https://plus.unsplash.com/premium_photo-1675107359599-a2d0d8983c36?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt="Pearl Drop Earrings"
+              class="h-[350px] w-full object-cover object-center transition duration-500 group-hover:scale-105"
+            />
+          </div>
+          <div class="p-6">
+            <h3 class="font-sans text-xl font-medium text-charcoal mb-1">
+              Pearl Drop Earrings
+            </h3>
+            <p class="text-sm text-charcoal/60 mb-3">South Sea Pearls</p>
+            <p class="font-sans text-lg font-medium text-gold">$899.00</p>
+            <div
+              class="add-to-cart-overlay absolute inset-0 bg-gradient-to-t from-charcoal/70 via-transparent to-transparent flex items-end p-6 opacity-0 group-hover:opacity-100 transition duration-300"
+            >
+              <button
+                class="add-to-cart w-full bg-gold text-charcoal py-3 px-6 font-sans font-medium hover:bg-pearl transition duration-300"
+                data-id="1"
+                data-name="Diamond Solitaire Ring"
+                data-price="2499"
+                data-image="https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+              >
+                ADD TO CART
+              </button>
             </div>
-            
-            <!-- Product 2 -->
-            <div class="jewel-hover bg-white group relative rounded-lg overflow-hidden border border-champagne">
-                <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden">
-                    <img src="https://plus.unsplash.com/premium_photo-1675107359599-a2d0d8983c36?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Pearl Drop Earrings" class="h-[350px] w-full object-cover object-center transition duration-500 group-hover:scale-105">
-                    <div class="absolute inset-0 bg-gradient-to-t from-charcoal/70 via-transparent to-transparent flex items-end p-6 opacity-0 group-hover:opacity-100 transition duration-300">
-                        <button class="add-to-cart w-full bg-gold text-charcoal py-3 px-6 font-sans font-medium hover:bg-pearl transition duration-300" data-id="2" data-name="Pearl Drop Earrings" data-price="899" data-image="https://plus.unsplash.com/premium_photo-1675107359599-a2d0d8983c36?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
-                            ADD TO CART
-                        </button>
-                    </div>
-                </div>
-                <div class="p-6">
-                    <h3 class="font-sans text-xl font-medium text-charcoal mb-1">Pearl Drop Earrings</h3>
-                    <p class="text-sm text-charcoal/60 mb-3">South Sea Pearls</p>
-                    <p class="font-sans text-lg font-medium text-gold">$899.00</p>
-                </div>
-            </div>
-            
-            <!-- Product 3 -->
-            <div class="jewel-hover bg-white group relative rounded-lg overflow-hidden border border-champagne">
-                <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Diamond Tennis Bracelet" class="h-[350px] w-full object-cover object-center transition duration-500 group-hover:scale-105">
-                    <div class="absolute inset-0 bg-gradient-to-t from-charcoal/70 via-transparent to-transparent flex items-end p-6 opacity-0 group-hover:opacity-100 transition duration-300">
-                        <button class="add-to-cart w-full bg-gold text-charcoal py-3 px-6 font-sans font-medium hover:bg-pearl transition duration-300" data-id="3" data-name="Diamond Tennis Bracelet" data-price="3200" data-image="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80">
-                            ADD TO CART
-                        </button>
-                    </div>
-                </div>
-                <div class="p-6">
-                    <h3 class="font-sans text-xl font-medium text-charcoal mb-1">Diamond Tennis Bracelet</h3>
-                    <p class="text-sm text-charcoal/60 mb-3">14K White Gold, 5ctw</p>
-                    <p class="font-sans text-lg font-medium text-gold">$3,200.00</p>
-                </div>
-            </div>
-            
-            <!-- Product 4 -->
-            <div class="jewel-hover bg-white group relative rounded-lg overflow-hidden border border-champagne">
-                <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Gold Pendant Necklace" class="h-[350px] w-full object-cover object-center transition duration-500 group-hover:scale-105">
-                    <div class="absolute inset-0 bg-gradient-to-t from-charcoal/70 via-transparent to-transparent flex items-end p-6 opacity-0 group-hover:opacity-100 transition duration-300">
-                        <button class="add-to-cart w-full bg-gold text-charcoal py-3 px-6 font-sans font-medium hover:bg-pearl transition duration-300" data-id="4" data-name="Gold Pendant Necklace" data-price="1250" data-image="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80">
-                            ADD TO CART
-                        </button>
-                    </div>
-                </div>
-                <div class="p-6">
-                    <h3 class="font-sans text-xl font-medium text-charcoal mb-1">Gold Pendant Necklace</h3>
-                    <p class="text-sm text-charcoal/60 mb-3">18K Yellow Gold</p>
-                    <p class="font-sans text-lg font-medium text-gold">$1,250.00</p>
-                </div>
-            </div>
+          </div>
         </div>
-        
-        <div class="text-center mt-16">
-            <a href="#" class="inline-block border border-charcoal text-charcoal px-10 py-4 font-sans font-medium hover:bg-charcoal hover:text-pearl transition duration-300">VIEW ALL PRODUCTS</a>
+
+        <!-- Product 3 -->
+        <div
+          class="jewel-hover bg-white group relative rounded-lg overflow-hidden border border-champagne"
+        >
+          <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+              alt="Diamond Tennis Bracelet"
+              class="h-[350px] w-full object-cover object-center transition duration-500 group-hover:scale-105"
+            />
+          </div>
+          <div class="p-6">
+            <h3 class="font-sans text-xl font-medium text-charcoal mb-1">
+              Diamond Tennis Bracelet
+            </h3>
+            <p class="text-sm text-charcoal/60 mb-3">14K White Gold, 5ctw</p>
+            <p class="font-sans text-lg font-medium text-gold">$3,200.00</p>
+            <div
+              class="add-to-cart-overlay absolute inset-0 bg-gradient-to-t from-charcoal/70 via-transparent to-transparent flex items-end p-6 opacity-0 group-hover:opacity-100 transition duration-300"
+            >
+              <button
+                class="add-to-cart w-full bg-gold text-charcoal py-3 px-6 font-sans font-medium hover:bg-pearl transition duration-300"
+                data-id="1"
+                data-name="Diamond Solitaire Ring"
+                data-price="2499"
+                data-image="https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+              >
+                ADD TO CART
+              </button>
+            </div>
+          </div>
         </div>
+
+        <!-- Product 4 -->
+        <div
+          class="jewel-hover bg-white group relative rounded-lg overflow-hidden border border-champagne"
+        >
+          <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden">
+            <img
+              src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80"
+              alt="Gold Pendant Necklace"
+              class="h-[350px] w-full object-cover object-center transition duration-500 group-hover:scale-105"
+            />
+          </div>
+          <div class="p-6">
+            <h3 class="font-sans text-xl font-medium text-charcoal mb-1">
+              Gold Pendant Necklace
+            </h3>
+            <p class="text-sm text-charcoal/60 mb-3">18K Yellow Gold</p>
+            <p class="font-sans text-lg font-medium text-gold">$1,250.00</p>
+            <div
+              class="add-to-cart-overlay absolute inset-0 bg-gradient-to-t from-charcoal/70 via-transparent to-transparent flex items-end p-6 opacity-0 group-hover:opacity-100 transition duration-300"
+            >
+              <button
+                class="add-to-cart w-full bg-gold text-charcoal py-3 px-6 font-sans font-medium hover:bg-pearl transition duration-300"
+                data-id="1"
+                data-name="Diamond Solitaire Ring"
+                data-price="2499"
+                data-image="https://images.unsplash.com/photo-1605100804763-247f67b3557e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
+              >
+                ADD TO CART
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="text-center mt-16">
+        <a
+          href="#"
+          class="inline-block border border-charcoal text-charcoal px-10 py-4 font-sans font-medium hover:bg-charcoal hover:text-pearl transition duration-300"
+          >VIEW ALL PRODUCTS</a
+        >
+      </div>
     </section>
-    
+
     <!-- Craftsmanship Section -->
     <section class="py-20 px-6 max-w-7xl mx-auto bg-champagne">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div class="order-2 lg:order-1">
-                <span class="text-gold font-sans tracking-widest text-sm mb-4 inline-block">OUR CRAFTSMANSHIP</span>
-                <h2 class="font-sans text-4xl md:text-5xl font-bold mb-6">The Art of Jewelry Making</h2>
-                <p class="text-charcoal/80 mb-6">At LUXE, we believe jewelry should be as unique as the person wearing it. Each piece in our collection is handcrafted by master jewelers with decades of experience, using only the finest materials sourced from ethical suppliers.</p>
-                <p class="text-charcoal/80 mb-8">Our commitment to excellence extends beyond the materials we use. Every design undergoes rigorous quality control to ensure it meets our exacting standards before it reaches you.</p>
-                <a href="#" class="inline-flex items-center text-charcoal hover:text-gold transition duration-300 group font-sans font-medium">
-                    <span class="mr-2">Discover our process</span>
-                    <i class="fas fa-arrow-right group-hover:translate-x-1 transition duration-300"></i>
-                </a>
-            </div>
-            <div class="order-1 lg:order-2 relative">
-                <img src="https://plus.unsplash.com/premium_photo-1681492221554-d875568e959b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Jewelry Crafting" class="w-full h-auto rounded-lg shadow-xl">
-                <div class="absolute -bottom-6 -right-6 bg-white p-6 shadow-lg rounded-lg w-3/4 hidden lg:block">
-                    <h4 class="font-sans text-xl font-bold mb-2">Since 1985</h4>
-                    <p class="text-charcoal/70">Four generations of master jewelers perfecting their craft</p>
-                </div>
-            </div>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div class="order-2 lg:order-1">
+          <span
+            class="text-gold font-sans tracking-widest text-sm mb-4 inline-block"
+            >OUR CRAFTSMANSHIP</span
+          >
+          <h2 class="font-sans text-4xl md:text-5xl font-bold mb-6">
+            The Art of Jewelry Making
+          </h2>
+          <p class="text-charcoal/80 mb-6">
+            At LUXE, we believe jewelry should be as unique as the person
+            wearing it. Each piece in our collection is handcrafted by master
+            jewelers with decades of experience, using only the finest materials
+            sourced from ethical suppliers.
+          </p>
+          <p class="text-charcoal/80 mb-8">
+            Our commitment to excellence extends beyond the materials we use.
+            Every design undergoes rigorous quality control to ensure it meets
+            our exacting standards before it reaches you.
+          </p>
+          <a
+            href="#"
+            class="inline-flex items-center text-charcoal hover:text-gold transition duration-300 group font-sans font-medium"
+          >
+            <span class="mr-2">Discover our process</span>
+            <i
+              class="fas fa-arrow-right group-hover:translate-x-1 transition duration-300"
+            ></i>
+          </a>
         </div>
+        <div class="order-1 lg:order-2 relative">
+          <img
+            src="https://plus.unsplash.com/premium_photo-1681492221554-d875568e959b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="Jewelry Crafting"
+            class="w-full h-auto rounded-lg shadow-xl"
+          />
+          <div
+            class="absolute -bottom-6 -right-6 bg-white p-6 shadow-lg rounded-lg w-3/4 hidden lg:block"
+          >
+            <h4 class="font-sans text-xl font-bold mb-2">Since 1985</h4>
+            <p class="text-charcoal/70">
+              Four generations of master jewelers perfecting their craft
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
-    
+
     <!-- Testimonials -->
     <section class="py-20 px-6 max-w-7xl mx-auto">
-        <div class="text-center mb-16">
-            <span class="text-gold font-sans tracking-widest text-sm mb-4 inline-block">CLIENT TESTIMONIALS</span>
-            <h2 class="font-sans text-4xl md:text-5xl font-bold mb-4">What Our Clients Say</h2>
-            <p class="max-w-2xl mx-auto text-charcoal/70">Experiences that speak for themselves</p>
+      <div class="text-center mb-16">
+        <span
+          class="text-gold font-sans tracking-widest text-sm mb-4 inline-block"
+          >CLIENT TESTIMONIALS</span
+        >
+        <h2 class="font-sans text-4xl md:text-5xl font-bold mb-4">
+          What Our Clients Say
+        </h2>
+        <p class="max-w-2xl mx-auto text-charcoal/70">
+          Experiences that speak for themselves
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div
+          class="bg-white p-8 rounded-lg border border-champagne hover:border-gold transition duration-300"
+        >
+          <div class="flex items-center mb-4">
+            <div class="text-gold">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+          <p class="text-charcoal/80 mb-6 italic">
+            "The diamond necklace I purchased for my anniversary exceeded all
+            expectations. The craftsmanship is impeccable and the customer
+            service was outstanding."
+          </p>
+          <div class="flex items-center">
+            <div class="ml-4">
+              <h4 class="font-sans font-medium">Sarah Johnson</h4>
+              <p class="text-sm text-charcoal/50">New York</p>
+            </div>
+          </div>
         </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="bg-white p-8 rounded-lg border border-champagne hover:border-gold transition duration-300">
-                <div class="flex items-center mb-4">
-                    <div class="text-gold">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                </div>
-                <p class="text-charcoal/80 mb-6 italic">"The diamond necklace I purchased for my anniversary exceeded all expectations. The craftsmanship is impeccable and the customer service was outstanding."</p>
-                <div class="flex items-center">
-                    <div class="ml-4">
-                        <h4 class="font-sans font-medium">Sarah Johnson</h4>
-                        <p class="text-sm text-charcoal/50">New York</p>
-                    </div>
-                </div>
+
+        <div
+          class="bg-white p-8 rounded-lg border border-champagne hover:border-gold transition duration-300"
+        >
+          <div class="flex items-center mb-4">
+            <div class="text-gold">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
             </div>
-            
-            <div class="bg-white p-8 rounded-lg border border-champagne hover:border-gold transition duration-300">
-                <div class="flex items-center mb-4">
-                    <div class="text-gold">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                </div>
-                <p class="text-charcoal/80 mb-6 italic">"I've purchased several pieces from LUXE over the years and each one has been more beautiful than the last. Their attention to detail is unmatched."</p>
-                <div class="flex items-center">
-                    <div class="ml-4">
-                        <h4 class="font-sans font-medium">Michael Chen</h4>
-                        <p class="text-sm text-charcoal/50">Los Angeles</p>
-                    </div>
-                </div>
+          </div>
+          <p class="text-charcoal/80 mb-6 italic">
+            "I've purchased several pieces from LUXE over the years and each one
+            has been more beautiful than the last. Their attention to detail is
+            unmatched."
+          </p>
+          <div class="flex items-center">
+            <div class="ml-4">
+              <h4 class="font-sans font-medium">Michael Chen</h4>
+              <p class="text-sm text-charcoal/50">Los Angeles</p>
             </div>
-            
-            <div class="bg-white p-8 rounded-lg border border-champagne hover:border-gold transition duration-300">
-                <div class="flex items-center mb-4">
-                    <div class="text-gold">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                </div>
-                <p class="text-charcoal/80 mb-6 italic">"The custom engagement ring they created was perfect. They listened to exactly what I wanted and delivered beyond my dreams. My fiancée was speechless!"</p>
-                <div class="flex items-center">
-                    <div class="ml-4">
-                        <h4 class="font-sans font-medium">David Wilson</h4>
-                        <p class="text-sm text-charcoal/50">Chicago</p>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+
+        <div
+          class="bg-white p-8 rounded-lg border border-champagne hover:border-gold transition duration-300"
+        >
+          <div class="flex items-center mb-4">
+            <div class="text-gold">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+            </div>
+          </div>
+          <p class="text-charcoal/80 mb-6 italic">
+            "The custom engagement ring they created was perfect. They listened
+            to exactly what I wanted and delivered beyond my dreams. My fiancée
+            was speechless!"
+          </p>
+          <div class="flex items-center">
+            <div class="ml-4">
+              <h4 class="font-sans font-medium">David Wilson</h4>
+              <p class="text-sm text-charcoal/50">Chicago</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
-    
+
     <!-- Newsletter -->
     <section class="py-20 px-6 bg-charcoal text-pearl">
-        <div class="max-w-4xl mx-auto text-center">
-            <h2 class="font-sans text-4xl md:text-5xl font-bold mb-4">Join Our Exclusive Community</h2>
-            <p class="max-w-2xl mx-auto mb-8 text-pearl/70">Subscribe to receive updates on new collections, private sales, and jewelry care tips.</p>
-            <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-                <input type="email" placeholder="Your email address" class="flex-1 bg-charcoal/50 border border-pearl/30 rounded px-6 py-3 focus:outline-none focus:border-gold placeholder-pearl/50">
-                <button type="submit" class="bg-gold text-charcoal px-8 py-3 font-sans font-medium rounded hover:bg-pearl transition duration-300">SUBSCRIBE</button>
-            </form>
-            <p class="text-xs text-pearl/50 mt-6 font-sans">We respect your privacy. Unsubscribe at any time.</p>
-        </div>
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="font-sans text-4xl md:text-5xl font-bold mb-4">
+          Join Our Exclusive Community
+        </h2>
+        <p class="max-w-2xl mx-auto mb-8 text-pearl/70">
+          Subscribe to receive updates on new collections, private sales, and
+          jewelry care tips.
+        </p>
+        <form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+          <input
+            type="email"
+            placeholder="Your email address"
+            class="flex-1 bg-charcoal/50 border border-pearl/30 rounded px-6 py-3 focus:outline-none focus:border-gold placeholder-pearl/50"
+          />
+          <button
+            type="submit"
+            class="bg-gold text-charcoal px-8 py-3 font-sans font-medium rounded hover:bg-pearl transition duration-300"
+          >
+            SUBSCRIBE
+          </button>
+        </form>
+        <p class="text-xs text-pearl/50 mt-6 font-sans">
+          We respect your privacy. Unsubscribe at any time.
+        </p>
+      </div>
     </section>
-    
+
     <!-- Footer -->
     <footer class="bg-white pt-20 pb-12 px-6">
-        <div class="max-w-7xl mx-auto">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
-                <div>
-                    <h3 class="font-sans text-2xl font-bold mb-6">LUXE</h3>
-                    <p class="text-charcoal/70 mb-6">Timeless jewelry crafted for the modern individual.</p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-charcoal/70 hover:text-gold transition duration-300"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="text-charcoal/70 hover:text-gold transition duration-300"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="text-charcoal/70 hover:text-gold transition duration-300"><i class="fab fa-pinterest-p"></i></a>
-                        <a href="#" class="text-charcoal/70 hover:text-gold transition duration-300"><i class="fab fa-twitter"></i></a>
-                    </div>
-                </div>
-                
-                <div>
-                    <h4 class="font-sans font-medium mb-6">Shop</h4>
-                    <ul class="space-y-3">
-                        <li><a href="#" class="text-charcoal/70 hover:text-gold transition duration-300">Rings</a></li>
-                        <li><a href="#" class="text-charcoal/70 hover:text-gold transition duration-300">Necklaces</a></li>
-                        <li><a href="#" class="text-charcoal/70 hover:text-gold transition duration-300">Earrings</a></li>
-                        <li><a href="#" class="text-charcoal/70 hover:text-gold transition duration-300">Bracelets</a></li>
-                        <li><a href="#" class="text-charcoal/70 hover:text-gold transition duration-300">New Arrivals</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="font-sans font-medium mb-6">Information</h4>
-                    <ul class="space-y-3">
-                        <li><a href="#" class="text-charcoal/70 hover:text-gold transition duration-300">About Us</a></li>
-                        <li><a href="#" class="text-charcoal/70 hover:text-gold transition duration-300">Sustainability</a></li>
-                        <li><a href="#" class="text-charcoal/70 hover:text-gold transition duration-300">Jewelry Care</a></li>
-                        <li><a href="#" class="text-charcoal/70 hover:text-gold transition duration-300">FAQ</a></li>
-                        <li><a href="#" class="text-charcoal/70 hover:text-gold transition duration-300">Contact Us</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h4 class="font-sans font-medium mb-6">Contact</h4>
-                    <ul class="space-y-3">
-                        <li class="text-charcoal/70">123 Jewelry Avenue</li>
-                        <li class="text-charcoal/70">New York, NY 10001</li>
-                        <li class="text-charcoal/70">+1 (555) 123-4567</li>
-                        <li class="text-charcoal/70">info@luxejewelry.com</li>
-                    </ul>
-                </div>
+      <div class="max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+          <div>
+            <h3 class="font-sans text-2xl font-bold mb-6">LUXE</h3>
+            <p class="text-charcoal/70 mb-6">
+              Timeless jewelry crafted for the modern individual.
+            </p>
+            <div class="flex space-x-4">
+              <a
+                href="#"
+                class="text-charcoal/70 hover:text-gold transition duration-300"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
+              <a
+                href="#"
+                class="text-charcoal/70 hover:text-gold transition duration-300"
+                ><i class="fab fa-instagram"></i
+              ></a>
+              <a
+                href="#"
+                class="text-charcoal/70 hover:text-gold transition duration-300"
+                ><i class="fab fa-pinterest-p"></i
+              ></a>
+              <a
+                href="#"
+                class="text-charcoal/70 hover:text-gold transition duration-300"
+                ><i class="fab fa-twitter"></i
+              ></a>
             </div>
-            
-            <div class="border-t border-champagne mt-16 pt-8 flex flex-col md:flex-row justify-between items-center">
-                <p class="text-charcoal/50 text-sm mb-4 md:mb-0">© 2023 LUXE Jewelry. All rights reserved.</p>
-                <div class="flex space-x-6">
-                    <a href="#" class="text-charcoal/50 hover:text-gold transition duration-300 text-sm">Privacy Policy</a>
-                    <a href="#" class="text-charcoal/50 hover:text-gold transition duration-300 text-sm">Terms of Service</a>
-                    <a href="#" class="text-charcoal/50 hover:text-gold transition duration-300 text-sm">Shipping Policy</a>
-                </div>
-            </div>
+          </div>
+
+          <div>
+            <h4 class="font-sans font-medium mb-6">Shop</h4>
+            <ul class="space-y-3">
+              <li>
+                <a
+                  href="#"
+                  class="text-charcoal/70 hover:text-gold transition duration-300"
+                  >Rings</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-charcoal/70 hover:text-gold transition duration-300"
+                  >Necklaces</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-charcoal/70 hover:text-gold transition duration-300"
+                  >Earrings</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-charcoal/70 hover:text-gold transition duration-300"
+                  >Bracelets</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-charcoal/70 hover:text-gold transition duration-300"
+                  >New Arrivals</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="font-sans font-medium mb-6">Information</h4>
+            <ul class="space-y-3">
+              <li>
+                <a
+                  href="#"
+                  class="text-charcoal/70 hover:text-gold transition duration-300"
+                  >About Us</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-charcoal/70 hover:text-gold transition duration-300"
+                  >Sustainability</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-charcoal/70 hover:text-gold transition duration-300"
+                  >Jewelry Care</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-charcoal/70 hover:text-gold transition duration-300"
+                  >FAQ</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-charcoal/70 hover:text-gold transition duration-300"
+                  >Contact Us</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 class="font-sans font-medium mb-6">Contact</h4>
+            <ul class="space-y-3">
+              <li class="text-charcoal/70">123 Jewelry Avenue</li>
+              <li class="text-charcoal/70">New York, NY 10001</li>
+              <li class="text-charcoal/70">+1 (555) 123-4567</li>
+              <li class="text-charcoal/70">info@luxejewelry.com</li>
+            </ul>
+          </div>
         </div>
+
+        <div
+          class="border-t border-champagne mt-16 pt-8 flex flex-col md:flex-row justify-between items-center"
+        >
+          <p class="text-charcoal/50 text-sm mb-4 md:mb-0">
+            © 2023 LUXE Jewelry. All rights reserved.
+          </p>
+          <div class="flex space-x-6">
+            <a
+              href="#"
+              class="text-charcoal/50 hover:text-gold transition duration-300 text-sm"
+              >Privacy Policy</a
+            >
+            <a
+              href="#"
+              class="text-charcoal/50 hover:text-gold transition duration-300 text-sm"
+              >Terms of Service</a
+            >
+            <a
+              href="#"
+              class="text-charcoal/50 hover:text-gold transition duration-300 text-sm"
+              >Shipping Policy</a
+            >
+          </div>
+        </div>
+      </div>
     </footer>
     <script src="./scripts.js"></script>
-</body>
+  </body>
 </html>
